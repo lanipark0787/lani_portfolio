@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #ffffff;
+}
+
+li {
+  list-style: none;
+}
+
+a:any-link {
+  text-decoration: none;
+}
+
+section {
+  height: 100vh;
+  background: url(../img/lani\ BG-4.jpg) center;
+  background-size: cover;
+  padding: 5vw;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3em auto;
+  gap: 10vh;
+}
+
+section h2 {
+  font: bold 3em/1 '';
+}
+h3 {
+  font : 2em/1 '';
+}
+h4 {
+  font: 1.5em/1 '';
+}
+.project {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5vw;
+}
+
+.project article {
+  backdrop-filter: blur(.5em);
+  border: .125em solid #fff3;
+  border-radius: 1em;
+  overflow: hidden;
+  padding: 1em;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 2em auto;
+  gap: 1em;
+}
+
+.project article h3 {
+  font: bold 1.5em '';
+}
+
+.project article ul {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr;
+}
+
+.project article ul li {
+  background-color: #fff2;
+  border: .125em solid #fff3;
+  border-radius: .5em;
+  overflow: hidden;
+  align-content: center;
+}
+
+@media (min-width:1024px) {
+  section {
+    padding: 10vw;
+    grid-template-rows: auto auto;
+  }
+
+  .project {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
