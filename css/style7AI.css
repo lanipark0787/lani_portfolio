@@ -9,8 +9,8 @@
 :root {
   --bg:        #2c2c2e;
   --bg-light:  #3a3a3c;
-  --surface:   rgba(255, 255, 255, 0.14);
-  --surface-border: rgba(255, 255, 255, 0.2);
+  --surface:   rgba(255, 255, 255, 0.2);
+  --surface-border: rgba(255, 255, 255, 0.24);
   --text:      #f0ede8;
   --text-muted: rgba(240, 237, 232, 0.5);
   --accent:    #0099ff;
@@ -186,15 +186,15 @@ body::before {
 .card {
   position: absolute;
   display: flex;
-  width: clamp(288px, 25vw, 450px);
+  width: clamp(274px, 23.75vw, 428px);
   min-height: 470px;
   height: auto;
   opacity: 1;
   overflow: hidden;
-  backdrop-filter: blur(74px) saturate(1.08);
-  -webkit-backdrop-filter: blur(74px) saturate(1.08);
+  backdrop-filter: blur(120px) saturate(1.08);
+  -webkit-backdrop-filter: blur(120px) saturate(1.08);
   background:
-    linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.065) 42%, rgba(255,255,255,0.11) 100%),
+    linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.1) 44%, rgba(255,255,255,0.15) 100%),
     var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--card-radius);
@@ -212,9 +212,9 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.13) 18%, transparent 34%),
+    linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.1) 18%, transparent 34%),
     radial-gradient(circle at 18% 12%, rgba(255,255,255,0.14), transparent 26%);
-  opacity: 0.13;
+  opacity: 0.11;
   transform: translateX(-34%);
   transition: opacity 0.35s ease, transform 0.5s ease;
 }
@@ -256,10 +256,25 @@ body::before {
 }
 
 .card-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: calc(470px - 4rem);
+}
+
+.card-content::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: -1.1rem;
+  width: 82%;
+  height: 78%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 22% 24%, rgba(40, 40, 42, 0.22) 0%, rgba(40, 40, 42, 0.14) 32%, rgba(40, 40, 42, 0.05) 58%, transparent 78%);
+  filter: blur(20px);
 }
 
 /* Floating card number */
@@ -296,21 +311,21 @@ body::before {
 }
 
 .card-02 {
-  left: clamp(258px, 23vw, 405px);
+  left: clamp(255px, 22.5vw, 401px);
   top: 50%;
   transform: translateY(-50%) rotate(0.3deg);
   z-index: 2;
 }
 
 .card-03 {
-  left: clamp(516px, 46vw, 810px);
+  left: clamp(510px, 45vw, 802px);
   top: 50%;
   transform: translateY(-56%) rotate(0.8deg);
   z-index: 3;
 }
 
 /* Glow on card-03 (frontmost) */
-.card-03::after {
+.card-03 .card-content::after {
   content: '';
   position: absolute;
   top: 40%;
@@ -321,6 +336,7 @@ body::before {
   border-radius: 50%;
   pointer-events: none;
   filter: blur(6px);
+  z-index: -1;
 }
 
 /* Card content */
@@ -328,6 +344,7 @@ body::before {
   font-family: var(--font-kr);
   font-size: 0.72rem;
   color: var(--white);
+  text-shadow: 0 1px 14px rgba(0,0,0,0.28);
   margin-bottom: 0.6rem;
   letter-spacing: 0.04em;
 }
@@ -340,6 +357,9 @@ body::before {
   letter-spacing: -0.02em;
   color: var(--white);
   margin-bottom: 1rem;
+  text-shadow:
+    0 2px 18px rgba(0,0,0,0.32),
+    0 0 1px rgba(255,255,255,0.24);
 }
 
 .card-sub {
@@ -348,6 +368,7 @@ body::before {
   font-weight: 300;
   line-height: 1.5;
   margin-bottom: 1.6rem;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.22);
 }
 
 .card-sub.accent { color: var(--accent); }
@@ -372,12 +393,12 @@ body::before {
 
 /* ---------- Accordion list (card-03) ---------- */
 .accordion-list {
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(255,255,255,0.16);
   padding-top: 0.8rem;
 }
 
 .accordion-item {
-  border-bottom: 1px solid rgba(255,255,255,0.045);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
 .accordion-trigger {
@@ -386,6 +407,7 @@ body::before {
   border: 0;
   background: transparent;
   color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 12px rgba(0,0,0,0.24);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -418,7 +440,25 @@ body::before {
 
 .accordion-trigger-compact {
   justify-content: flex-start;
-  gap: 0.45rem;
+  gap: 2%;
+}
+
+.portfolio-direct-link {
+  justify-content: flex-start;
+  gap: 2%;
+}
+
+.portfolio-go {
+  color: rgba(255, 255, 255, 0.58);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  transition: color 0.24s ease, transform 0.24s ease;
+}
+
+.portfolio-direct-link:hover .portfolio-go {
+  color: var(--white);
+  transform: translateX(0.18rem);
 }
 
 .accordion-arrow {
@@ -501,6 +541,7 @@ body::before {
   border-radius: 999px;
   background: rgba(255,255,255,0.045);
   color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.14);
   font-family: var(--font-sans);
   font-size: 0.62rem;
   font-weight: 400;
